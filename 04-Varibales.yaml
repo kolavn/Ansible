@@ -1,0 +1,6 @@
+- name: varibales to print
+  hosts: web
+  tasks:
+  - name: print the variables
+    ansible.builtin.debug:
+      message: "Hi, I am printing an ansible playbook for variables"
