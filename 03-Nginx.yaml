@@ -1,5 +1,6 @@
 - name: NGINX Install and Run
   hosts: web
+  become: yes #takes sudo/root access to install package
   tasks:
   - name: Install nginx
     ansible.builtin.package: #heterogeneous module that can work for all distributuons
