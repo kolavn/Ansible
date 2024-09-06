@@ -1,0 +1,17 @@
+# Taking variables from user input
+# Prompt means - confidential information
+- name: variables from prompt
+  hosts: web
+  vars_prompt:
+  - name: COURSE                           # Name of the variable
+    prompt: Please enter the course name
+  - name: TEACHER                          # Name of the variable
+    prompt: Please enter the teacher name
+  - name: DURATION                         # Name of the variable
+    prompt: Enter the duration of course
+    private: false                        #Not Confidential and not kept secret.
+
+  tasks:
+  - name: Print the course info
+    ansible.builtin.debug:
+      msg: "Hi, Learning Devops from {{COURSE}} course, taught by {{TEACHER}} and time is {{DURATION}}"
