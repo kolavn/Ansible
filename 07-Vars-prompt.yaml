@@ -5,11 +5,13 @@
   vars_prompt:
   - name: COURSE                           # Name of the variable
     prompt: Please enter the course name
+    private: false
   - name: TEACHER                          # Name of the variable
     prompt: Please enter the teacher name
+    private: false
   - name: DURATION                         # Name of the variable
     prompt: Enter the duration of course
-    private: false                        #Not Confidential and not kept secret.
+    private: false                        # Not Confidential, not kept secret and can see what's getting typed.
 
   tasks:
   - name: Print the course info
