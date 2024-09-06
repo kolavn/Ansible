@@ -1,0 +1,7 @@
+#Input as Arguments given in the run time
+- name: varibales to print
+  hosts: web
+  tasks:
+  - name: print the variables
+    ansible.builtin.debug:
+      msg: "Hi, I'm learning Devops from {{COURSE}} course, taught by {{TEACHER}} and time is {{DURATION}}"
