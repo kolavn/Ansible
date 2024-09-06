@@ -1,0 +1,7 @@
+- name: varibales to print
+  hosts: web
+  #Nothing has to be given here, Ansible takes values from Inventory file
+  tasks:
+  - name: print the variables
+    ansible.builtin.debug:
+      msg: "Hi, I am printing an ansible playbook from {{COURSE}}, taught by {{TEACHER}} and time is {{DURATION}}"
