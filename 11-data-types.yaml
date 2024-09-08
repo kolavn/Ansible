@@ -1,0 +1,23 @@
+- name: Description of work
+  hosts: local
+  vars:
+    course: 'Devops' #String
+    duration: 120 #this is number data type
+    topics:   # Its a list that starts with -
+    - Linux
+    - Shell
+    - Ansible
+    - Terraform
+    - AWS
+    live: true
+    tools:    # This is called map/dictionary, all the below are the key value pairs
+      ci: jenkins
+      cm: ansible
+      cloud: aws
+      aws:
+      - IAM
+      - S3
+  tasks:
+  - name: to print the entire course info
+    ansible.builtin.debug:
+      msg: " I am learning {{course}}, for duration: {{duration}}, and topics are: {{topics}}, and live: {{live}}, tools are: {{tools}}"

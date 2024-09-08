@@ -1,0 +1,27 @@
+- name: varibales to print
+  hosts: web
+
+  vars: # Play level variable, all tasks in this play have access to this vars.
+    COURSE: "Devops with AWS from Play Level"
+    TEACHER: "Siva"
+    DURATION: "1 HR"
+
+  vars_prompt:
+  - name: COURSE                           # Name of the variable
+    prompt: Please enter the course name
+    private: false
+  - name: TEACHER                          # Name of the variable
+    prompt: Please enter the teacher name
+    private: false
+  - name: DURATION                         # Name of the variable
+    prompt: Enter the duration of course
+    private: false   
+
+  tasks:
+  - name: print the information
+    vars: # task level variable, all tasks in this play have access to this vars.
+      COURSE: "Devops with AWS from Task Level"
+      TEACHER: "Siva"
+      DURATION: "1 HR"
+    ansible.builtin.debug:
+      msg: "Hi, Learning Devops from {{COURSE}} course, taught by {{TEACHER}} and time is {{DURATION}}"
