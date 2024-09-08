@@ -2,21 +2,21 @@
   hosts: local
   connection: local
   vars_prompt:
-  - name: number                          # Name of the variable
+  - name: my_number                          # Name of the variable
     prompt: Please enter the number
     private: false #not confidential
 
   tasks:
   - name: print this if the number is less than 10
     ansible.builtin.debug:
-      msg: "Given number {{number}} is less than 10"
-    when: number < 10
+      msg: "Given number {{my_number}} is less than 10"
+    when: my_number < 10
 
   - name: print this if the number is greater than or equal to 10
     ansible.builtin.debug:
-      msg: "Given number {{number}} is greater than or equal t 10"
-    when: number >= 10
-    
+      msg: "Given number {{my_number}} is greater than or equal t 10"
+    when: my_number >= 10
+
 
 
   
