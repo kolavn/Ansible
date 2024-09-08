@@ -1,5 +1,6 @@
 - name: Description of work
   hosts: local
+  connection: local
   vars:
     course: 'Devops' #String
     duration: 120 #this is number data type
