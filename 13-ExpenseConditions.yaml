@@ -5,6 +5,7 @@
   - name: Check user exists or not
     ansible.builtin.command: id expense
     register: USER #Here user is a varible that gets output from above command
+    ignore_errors: True
 
   - name : Print the user info
     ansible.builtin.debug:
