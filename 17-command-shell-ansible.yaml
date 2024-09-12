@@ -4,3 +4,7 @@
   tasks:
   - name: Execute the command
     ansible.builtin.command: ls -ltr > /tmp/output.txt
+
+#shell module logins to the server, and execute the command
+#but shell builtin, just issues the command and will not take complex tasks like piping
+
