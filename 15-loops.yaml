@@ -1,0 +1,15 @@
+- name: loops demo
+  hosts: web
+  connectopn: local
+  tasks:
+  - name: print the names
+    ansible.builtin.debug:
+      msg: "Hello {{item}}"
+    loop:  ## list of names by putting -
+    - Jack
+    - John
+    - Harris
+    - Kamala
+    - Joe Biden
+    - Trump
+    
