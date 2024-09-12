@@ -23,3 +23,12 @@
       numbers: [1,2,5,55,3,8,2,1,9]
     ansible.builtin.debug:
       msg: "{{ numbers | unique }}"
+
+  - name: convert map/dictionary to list
+    vars:
+      course:
+        name: "Devops"
+        duration: 120
+        teacher: "Veda"
+    ansible.builtin.debug:
+      msg: "{{ course | dict2items}}"
