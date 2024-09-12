@@ -24,6 +24,8 @@
   - name: print the output
     ansible.builtin.debug:
       msg: "{{ ec2_instances }}"
+
+  # Private Records or Frontend, backend, SQL
     
   - name: create r53 records #noting but getting the IPs from above output
     amazon.aws.route53:
@@ -35,5 +37,18 @@
       value: "{{ item.instances[0].private_ip_address }}"
       wait: true
       overwrite: true
-
     loop: "{{ ec2_instances.results }}"
+
+    # Public Records or public Ip creation
+  - name: create public r53 records for frontend #noting but getting the IPs from above output
+    amazon.aws.route53:
+      state: present
+      zone: "{{ zone }}"
+      record: "{{ item.item }}.{{ zone }}"  # first one gives frontend, second one is devopsveda.online
+      type: A
+      ttl: 1
+      value: "{{ item.instances[0].public_ip_address }}"
+      wait: true
+      overwrite: true
+    loop: "{{ ec2_instances.results }}"
+    when: item.item == "frontend"
