@@ -9,9 +9,10 @@
     - mysql
     - backend
     - frontend
+    zone: devopsveda.online
   tasks:
   - name: create ec2 instance
-    amazon.aws.ec2_instance:    # this is the module
+    amazon.aws.ec2_instance:   # this is the module
       name: "{{ item }}"
       vpc_subnet_id: "{{ subnet_id }}"
       instance_type: "t2.micro"
@@ -24,3 +25,15 @@
     ansible.builtin.debug:
       msg: "{{ ec2_instances }}"
     
+  - name: create r53 records #noting but getting the IPs from above output
+    amazon.aws.route53:
+      state: present
+      zone: "{{ zone }}"
+      record: "{{ item.item }}.{{ zone }}"  # first one gives mysql, second one is devopsveda.online
+      type: A
+      ttl: 1
+      value: "{{ item.instances[0].private_ip_address }}"
+      wait: true
+      overwrite: true
+
+    loop: "{{ ec2_instances.results }}"
