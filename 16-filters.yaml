@@ -20,6 +20,6 @@
 
   - name: get the unique values and remove duplicates in the list
     vars:
-      numbers: [1,2,5,55,3,8,9]
+      numbers: [1,2,5,55,3,8,2,1,9]
     ansible.builtin.debug:
       msg: "{{ numbers | unique }}"
