@@ -11,3 +11,15 @@
       greeting: "Hello John"
     ansible.builtin.debug:
       msg: "{{ greeting | upper }}"
+
+  - name: convert to lowercase for any name given
+    vars:
+      greeting: "HELLO JOHN"
+    ansible.builtin.debug:
+      msg: "{{ greeting | lower }}"
+
+  - name: get the unique values and remove duplicates in the list
+    vars:
+      numbers: [1,2,5,55,3,8,9]
+    ansible.builtin.debug:
+      msg: "{{ numbers | unique }}"
