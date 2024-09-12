@@ -19,3 +19,8 @@
       image_id: "{{ ami_id }}"
     loop: "{{ instances }}"
     register: ec2_instances ## all the output for the above steps are stored in register
+  
+  - name: print the output
+    ansible.builtin.debug:
+      msg: "{{ ec2_instances }}"
+    
