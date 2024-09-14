@@ -2,7 +2,7 @@
   hosts: local
   connection: local
   vars:
-    subnet_id: subnet-0f06bae187173faca
+    subnet_id: subnet-09130f84da7beefb1
     sg_id: "sg-09eba9a9adf487f36"
     ami_id: "ami-09c813fb71547fc4f"
     instances:
@@ -12,7 +12,7 @@
     zone: devopsveda.online
   tasks:
   - name: create ec2 instance
-    amazon.aws.ec2_instance:   # this is the module
+    amazon.aws.ec2_instance:   # this is the module available in documentation
       name: "{{ item }}"
       vpc_subnet_id: "{{ subnet_id }}"
       instance_type: "t2.micro"
@@ -39,16 +39,16 @@
       overwrite: true
     loop: "{{ ec2_instances.results }}"
 
-    # Public Records or public Ip creation
-  - name: create public r53 records for frontend #noting but getting the IPs from above output
-    amazon.aws.route53:
-      state: present
-      zone: "{{ zone }}"
-      record: "{{ zone }}"  #devopsveda.online
-      type: A
-      ttl: 1
-      value: "{{ item.instances[0].public_ip_address }}"
-      wait: true
-      overwrite: true
-    loop: "{{ ec2_instances.results }}"
-    when: item.item == "frontend"
+  #   # Public Records or public Ip creation
+  #- name: create public r53 records for frontend #noting but getting the IPs from above output
+  #  amazon.aws.route53:
+  #    state: present
+  #   zone: "{{ zone }}"
+  #    record: "{{ zone }}"  #devopsveda.online
+  #    type: A
+  #    ttl: 1
+  #    value: "{{ item.instances[0].public_ip_address }}"
+  #    wait: true
+  #    overwrite: true
+  #   loop: "{{ ec2_instances.results }}"
+  #   when: item.item == "frontend"
